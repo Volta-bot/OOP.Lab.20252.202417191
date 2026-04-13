@@ -1,4 +1,4 @@
-
+package AimsProject;
 public class DVD {
 	private String title;
 	private String category;

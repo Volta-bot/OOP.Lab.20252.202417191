@@ -1,4 +1,4 @@
-
+package AimsProject;
 public class Cart {
 	public static final int MAX_CAPACITY = 20;
 	private int qtyOrdered = 0;
