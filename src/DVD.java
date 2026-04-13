@@ -44,5 +44,9 @@ public class DVD {
 	public double getCost() {
 		return cost;
 	}
+	// Setter
+	public void setTitle(String newTitle) {
+		this.title = newTitle;
+	}
 	
 }
