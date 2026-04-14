@@ -31,5 +31,25 @@ public class Cart {
 		}
 		return cost;
 	}
-	
+	public void printCart() {
+		String result = "***********************CART**************************\nOrdered Items:\n";
+		for(int i=0;i<qtyOrdered;i++) {
+			result += (i+1) + ". " + "DVD - ";
+			result += itemsOrdered[i].toString() + "\n";
+		}
+		result += "Total Cost: " + totalCost() + "\n";
+		result += "*****************************************************";
+		System.out.println(result);
+	}
+	public void searchByTitle(String title) {
+		boolean found = false;
+		for(int i=0;i<qtyOrdered;i++) {
+			if(this.itemsOrdered[i].getTitle().equals(title)) {
+				found = true;
+				break;
+			}
+		}
+		if(found) System.out.println("DVD \"" + title + "\" is in cart.");
+		else System.out.println("DVD \"" + title + "\" is not in cart.");
+	}
 }

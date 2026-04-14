@@ -59,5 +59,15 @@ public class DVD {
 	public void setTitle(String newTitle) {
 		this.title = newTitle;
 	}
+	public boolean isMatch(String title) {
+		if(this.title.equals(title)) return true;
+		return false;
+	}
+	@Override
+	public String toString() {
+		String result = "";
+		result += this.title + " - " + this.category + " - " + this.director + " - " + this.length + " - " + this.cost;
+		return result;
+	}
 	
 }
