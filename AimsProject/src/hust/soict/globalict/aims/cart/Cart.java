@@ -1,4 +1,7 @@
-package AimsProject;
+package hust.soict.globalict.aims.cart;
+
+import hust.soict.globalict.aims.disc.DVD;
+
 public class Cart {
 	public static final int MAX_CAPACITY = 20;
 	private int qtyOrdered = 0;

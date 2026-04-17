@@ -1,4 +1,8 @@
-package AimsProject;
+package hust.soict.globalict.aims;
+
+import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.disc.DVD;
+
 public class Aims {
 	public static void main(String args[]) {
 		Cart newOrder = new Cart();
