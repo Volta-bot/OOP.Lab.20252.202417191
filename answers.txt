@@ -1,0 +1,4 @@
+1. Why doesn’t swap(jungleDVD, cinderellaDVD) change the titles?
+-This is because Java is pass by value. o1 and o2 are only copies of JungleDVD and CinderellaDVD, we are only swapping the local copies inside the method, not the actual objects.
+2. Why does changeTitle(jungleDVD, cinderellaDVD.getTitle()) change the title?
+-Because setTitle modifies the actual object in memory. In this case, we are modifying the title of jungleDVD to cinderellaDVD's title. 
