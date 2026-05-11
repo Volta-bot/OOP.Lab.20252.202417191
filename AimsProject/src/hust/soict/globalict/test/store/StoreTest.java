@@ -1,14 +1,14 @@
 package hust.soict.globalict.test.store;
 
-import hust.soict.globalict.aims.disc.DVD;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.store.Store;
 
 public class StoreTest {
 
 	public static void main(String[] args) {
-		DVD dvd1 = new DVD("The Lion King","Animation", "Roger Allers", 87, 19.95);
-		DVD dvd2 = new DVD("Aladin","Animation", 18.99);
-		DVD dvd3 = new DVD("Whiplash");
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King","Animation", "Roger Allers", 87, 19.95);
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Aladin","Animation", 18.99);
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Whiplash");
 		//test addDVD
 		Store DVDStore = new Store();
 		DVDStore.addDVD(dvd1);
