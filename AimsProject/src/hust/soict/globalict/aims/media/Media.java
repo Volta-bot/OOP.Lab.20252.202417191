@@ -35,5 +35,17 @@ public abstract class Media {
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
+	@Override 
+	public boolean equals(Object obj) {
+		// Same object in memory
+		if(this == obj) return true;
+		// null object
+		if (obj == null) return false;
+		// Object not a Media
+		if (!(obj instanceof Track)) return false;
+		// cast and compare
+		Media other = (Media) obj;
+		return this.getTitle() == other.getTitle();
+	}
 
 }
