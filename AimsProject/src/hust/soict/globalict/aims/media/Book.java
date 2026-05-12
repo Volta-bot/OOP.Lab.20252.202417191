@@ -1,9 +1,10 @@
 package hust.soict.globalict.aims.media;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Media {
-	private List<String> Author;
+	private List<String> Author = new ArrayList<>();
 	public Book(int id, String title, String category, float cost) {
 		super(id, title, category, cost);
 	}
@@ -21,6 +22,14 @@ public class Book extends Media {
 			}
 		}
 		return false;
+	}
+	@Override
+	public String toString() {
+	    return "Book - "
+	            + getTitle() + " - "
+	            + getCategory() + " - "
+	            + Author + " - "
+	            + getCost() + "$";
 	}
 
 }
