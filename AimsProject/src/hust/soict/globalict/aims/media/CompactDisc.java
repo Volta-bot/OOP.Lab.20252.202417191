@@ -3,30 +3,29 @@ package hust.soict.globalict.aims.media;
 import java.util.ArrayList;
 
 public class CompactDisc extends Disc implements Playable{
-	String artist;
+	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<>();
-	public CompactDisc(int id, String title, String category, float cost,int length, String director, String artist) {
-		super(id, title, category, cost, length, director);
+	public CompactDisc(int id, String title, String category, float cost, String director, String artist) {
+		super(id, title, category, cost, 0, director);
 		this.artist = artist;
 	}
 	//
-	public void addTrack(Track track) {
-		if(!trackExist(track)) tracks.add(track);
-	}
-	public void removeTrack(Track track) {
-		if(trackExist(track)) tracks.remove(track);
-	}
-	private boolean trackExist(Track track) {
-		for(Track i: tracks) if(i.equals(track)) return true;
-		return false;
-	}
-	
 	public int getLength() {
 		int total = 0;
 		for (Track i : tracks) {
 			total += i.getLength();
 		}
 		return total;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	//
+	public void addTrack(Track track) {
+		if(!tracks.contains(track)) tracks.add(track);
+	}
+	public void removeTrack(Track track) {
+		if(tracks.contains(track)) tracks.remove(track);
 	}
 	
 	@Override

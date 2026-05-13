@@ -1,10 +1,14 @@
 package hust.soict.globalict.aims.media;
-
+import java.util.Comparator;
 public abstract class Media {
 	private int id;
 	private String title;
 	private String category;
 	private float cost;
+	
+	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
+	
 	public Media(int id, String title, String category, float cost) {
 		this.id = id;
 		this.title = title;
@@ -42,10 +46,10 @@ public abstract class Media {
 		// null object
 		if (obj == null) return false;
 		// Object not a Media
-		if (!(obj instanceof Track)) return false;
+		if (!(obj instanceof Media)) return false;
 		// cast and compare
 		Media other = (Media) obj;
-		return this.getTitle() == other.getTitle();
+		return this.getTitle().equals(other.getTitle());
 	}
 
 }

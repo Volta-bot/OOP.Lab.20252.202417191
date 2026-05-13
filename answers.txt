@@ -1,4 +1,42 @@
-1. Why doesn’t swap(jungleDVD, cinderellaDVD) change the titles?
--This is because Java is pass by value. o1 and o2 are only copies of JungleDVD and CinderellaDVD, we are only swapping the local copies inside the method, not the actual objects.
-2. Why does changeTitle(jungleDVD, cinderellaDVD.getTitle()) change the title?
--Because setTitle modifies the actual object in memory. In this case, we are modifying the title of jungleDVD to cinderellaDVD's title. 
+-- Section 9: Which classes are aggregates of other classes? Checking all constructors of whole classes if they initialize for their parts?
+
+The aggregate/whole-part relationships in the design are:
+CompactDisc aggregates Track: because a CD contains many tracks
+Cart aggregates Media: because a cart contains many media items
+Store aggregates Media: because a store contains many media items
+
+-- Section 10: If the passing object is not an instance of Media, what happens?
+
+We already checked: 
+	if (!(obj instanceof Media)) return false;
+The method immediately returns false. This prevents invalid casting.
+
+-- Section 11: 
+output of the code: 
+CD - The Lion King - Animation - Dina - 180: 50.0$
+DVD - Interstellar - Scifi - Chistopher Nolan - 150: 50.0$
+Book - Maze Runner - Action - [Janice, Rimac] - 150.0$
+
+The output demonstrates polymorphism in Java. Although all objects are stored inside a List<Media>, Java automatically calls the correct overridden toString() method based on the actual object type at runtime. When iterating through the list:
+the CompactDisc object calls CompactDisc.toString()
+the DigitalVideoDisc object calls DigitalVideoDisc.toString()
+the Book object calls Book.toString()
+
+-- Section 12: 
+1)if we use this approach, The Media class should implement the Comparable<Media> interface because all media types (Book, CompactDisc, DigitalVideoDisc) inherit from it. This allows media objects to be compared and sorted directly.
+
+2)The compareTo() method should implement a default ordering rule. For example, for sorting by title then cost:
+@Override
+public int compareTo(Media other) {
+    int titleCompare = this.getTitle().compareTo(other.getTitle());
+
+    if (titleCompare == 0) {
+        return Float.compare(other.getCost(), this.getCost());
+    }
+
+    return titleCompare;
+}
+
+3) We cannot have 2 ordering rules, using the Comparable interface only allows one natural ordering because a class can only have one compareTo() implementation
+
+4)If DVDs require a different ordering rule, using only Comparable becomes difficult because different media types would require different comparison logic. In this case, using separate Comparator classes is a better design because each media type or ordering rule can have its own comparator implementation without affecting the others.
