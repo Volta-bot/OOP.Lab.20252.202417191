@@ -3,8 +3,9 @@ package hust.soict.globalict.aims.media;
 public class Track implements Playable {
 	private String title;
 	private int length;
-	public Track() {
-		// TODO Auto-generated constructor stub
+	public Track(String title, int length) {
+		this.title = title;
+		this.length = length;
 	}
 	public String getTitle() {
 		return title;
@@ -14,7 +15,8 @@ public class Track implements Playable {
 	}
 	@Override 
 	public void play() {
-		
+		System.out.println("Playing track: " + this.getTitle());
+	    System.out.println("Track length: " + this.getLength());
 	}
 	
 	@Override 
@@ -27,6 +29,6 @@ public class Track implements Playable {
 		if (!(obj instanceof Track)) return false;
 		// cast and compare
 		Track other = (Track) obj;
-		return this.getTitle() == other.getTitle()	&&	this.getLength() == other.getLength();
+		return this.getTitle().equals(other.getTitle()) && this.getLength() == other.getLength();
 	}
 }

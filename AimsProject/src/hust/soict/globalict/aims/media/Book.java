@@ -10,18 +10,10 @@ public class Book extends Media {
 	}
 	// add/remove Author
 	public void addAuthor(String name) {
-		if(!authorExist(name)) Author.add(name);
+		if(!Author.contains(name)) Author.add(name);
 	}
 	public void removeAuthor(String name){
-		if(authorExist(name)) Author.remove(name);
-	}
-	public boolean authorExist(String name) {
-		for(String i : Author) {
-			if (i.equals(name)) {
-				return true;
-			}
-		}
-		return false;
+		if(Author.contains(name)) Author.remove(name);
 	}
 	@Override
 	public String toString() {
