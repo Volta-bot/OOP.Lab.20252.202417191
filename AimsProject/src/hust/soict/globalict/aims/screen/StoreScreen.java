@@ -1,4 +1,4 @@
-package screen;
+package hust.soict.globalict.aims.screen;
 
 import java.awt.*;
 import java.util.ArrayList;

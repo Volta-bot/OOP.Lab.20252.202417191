@@ -1,4 +1,4 @@
-package screen;
+package hust.soict.globalict.aims.screen;
 
 import javax.swing.*;
 import java.awt.*;
