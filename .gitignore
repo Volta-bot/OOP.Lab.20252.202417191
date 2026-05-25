@@ -1,1 +1,4 @@
 *.lock
+*.bak
+AimsProject/lib/
+GUIProject/lib/
