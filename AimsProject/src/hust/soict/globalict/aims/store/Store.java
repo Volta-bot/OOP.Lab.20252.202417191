@@ -33,5 +33,8 @@ public class Store{
 			if(i.equals(media)) return true;
 		}
 		return false;
+	}
+	public ArrayList<Media> getItemsInStore() {
+		return itemsInStore;
 	}	
 }
