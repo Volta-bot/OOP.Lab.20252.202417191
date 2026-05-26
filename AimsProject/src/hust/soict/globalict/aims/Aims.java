@@ -9,6 +9,7 @@ import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
 import hust.soict.globalict.aims.media.Track;
+import hust.soict.globalict.aims.screen.CartScreen;
 import hust.soict.globalict.aims.store.Store;
 
 public class Aims {
@@ -59,7 +60,10 @@ public class Aims {
 		store.addMedia(dvd);
 		store.addMedia(book);
 		store.addMedia(cd);
-
+		
+		new CartScreen(cart);
+		
+		
 		int choice;
 		while(true) {
 			showMenu();
