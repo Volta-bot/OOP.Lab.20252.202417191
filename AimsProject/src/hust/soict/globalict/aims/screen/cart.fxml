@@ -19,9 +19,7 @@
 <BorderPane prefWidth="1024.0"
             prefHeight="768.0"
             xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="hust.soict.globalict.aims.screen.CartScreenController">
-
+            xmlns:fx="http://javafx.com/fxml/1">
     <!-- TOP -->
     <top>
         <VBox>
