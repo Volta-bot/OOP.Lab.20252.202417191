@@ -115,8 +115,8 @@
 
                         <Button fx:id="btnRemove"
                                 text="Remove"
-                                visible="false"/>
-
+        						visible="false"
+        						onAction="#btnRemovePressed"/>
                     </buttons>
                 </ButtonBar>
 
@@ -149,8 +149,9 @@
 
                 </HBox>
 
-                <Button text="Place Order"
-                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 24px;"/>
+                <Button fx:id="btnPlaceOrder"
+        			text="Place Order"
+        			onAction="#btnPlaceOrderPressed"/>
 
             </children>
         </VBox>
