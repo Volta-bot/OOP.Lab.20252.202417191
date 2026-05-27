@@ -61,7 +61,7 @@ public class Aims {
 		store.addMedia(book);
 		store.addMedia(cd);
 		
-		new CartScreen(cart);
+		new CartScreen(cart,store);
 		
 		
 		int choice;

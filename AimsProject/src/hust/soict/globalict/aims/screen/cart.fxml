@@ -37,7 +37,8 @@
                                     </items>
                                 </Menu>
 
-                                <MenuItem text="View Store"/>
+                                <MenuItem text="View Store"
+          							onAction="#menuViewStorePressed"/>
                                 <MenuItem text="View Cart"/>
                             </items>
                         </Menu>

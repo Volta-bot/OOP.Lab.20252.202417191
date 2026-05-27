@@ -1,10 +1,15 @@
 package hust.soict.globalict.aims.screen;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
+import hust.soict.globalict.aims.store.Store;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,8 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CartScreenController {
-
+	private Store store;
     private Cart cart;
+    private JFrame frame;
     @FXML
     private Button btnPlay;
 
@@ -44,10 +50,15 @@ public class CartScreenController {
 
     @FXML
     private RadioButton radioBtnFilterTitle;
+    
+    @FXML
+    private Label lblTotalCost;
 
-    public CartScreenController(Cart cart) {
+    public CartScreenController(Cart cart, Store store, JFrame frame) {
         super();
+        this.store = store;
         this.cart = cart;
+        this.frame = frame;
     }
     
     private FilteredList<Media> filteredMedia;
@@ -65,6 +76,7 @@ public class CartScreenController {
 
         filteredMedia = new FilteredList<>(cart.getItemsOrdered(),media -> true);
         tblMedia.setItems(filteredMedia);
+        updateTotalCost();
         
         btnPlay.setVisible(false);
         btnRemove.setVisible(false);
@@ -90,8 +102,13 @@ public class CartScreenController {
     }
     @FXML
     void btnRemovePressed(ActionEvent event) {
-        Media media = tblMedia.getSelectionModel().getSelectedItem();
-        cart.removeMedia(media);
+        Media media =
+            tblMedia.getSelectionModel().getSelectedItem();
+
+        if (media != null) {
+            cart.removeMedia(media);
+            updateTotalCost();   
+        }
     }
     void updateButtonBar(Media media) {
         btnRemove.setVisible(true);
@@ -126,5 +143,14 @@ public class CartScreenController {
     @FXML
     void btnPlaceOrderPressed(ActionEvent event) {
         cart.emptyCart();
+        updateTotalCost();
+    }
+    private void updateTotalCost() {
+        lblTotalCost.setText(cart.totalCost() + " $");
+    }
+    @FXML
+    void menuViewStorePressed(ActionEvent event) {
+    	frame.setVisible(false);
+        new StoreScreen(store,cart);
     }
 }
