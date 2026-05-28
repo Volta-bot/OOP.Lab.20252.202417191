@@ -57,9 +57,14 @@ public class Aims {
 		cd.addTrack(t1);
 		cd.addTrack(t2);
 
-		store.addMedia(dvd);
-		store.addMedia(book);
-		store.addMedia(cd);
+		try {
+			store.addMedia(dvd);
+			store.addMedia(book);
+			store.addMedia(cd);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		new CartScreen(cart,store);
 		
@@ -111,7 +116,12 @@ public class Aims {
 				input.nextLine();
 				switch (detailChoice) {
 				case 1:
-					cart.addMedia(media);
+					try {
+						cart.addMedia(media);
+					}
+					catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
 					System.out.println("Added to cart");
 					break;
 				case 2:
@@ -126,7 +136,12 @@ public class Aims {
 				title = input.nextLine();
 				media = store.searchMediaByTitle(title);
 				if (media != null) {
-					cart.addMedia(media);
+					try {
+						cart.addMedia(media);
+					}
+					catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
 					System.out.println("Added to cart");
 				} else {
 					System.out.println("Media not found");
@@ -189,7 +204,12 @@ public class Aims {
 	                switch (type) {
 	                    case 1:
 	                        Book book = new Book(id, title, category, cost);
-	                        store.addMedia(book);
+	                        try {
+	    						store.addMedia(book);
+	    					}
+	    					catch (Exception e) {
+	    						System.out.println(e.getMessage());
+	    					}
 	                        System.out.println("Book added");
 	                        break;
 	                    case 2:
@@ -198,16 +218,23 @@ public class Aims {
 	                        input.nextLine();
 	                        System.out.print("Director: ");
 	                        String dvdDirector = input.nextLine();
-	                        store.addMedia(
-	                            new DigitalVideoDisc(
-	                                id,
-	                                title,
-	                                category,
-	                                cost,
-	                                dvdLength,
-	                                dvdDirector
-	                            )
-	                        );
+	                        try {
+	                        	store.addMedia(
+	    	                            new DigitalVideoDisc(
+	    	                                id,
+	    	                                title,
+	    	                                category,
+	    	                                cost,
+	    	                                dvdLength,
+	    	                                dvdDirector
+	    	                            )
+	    	                     );
+	                        }
+	                        catch (Exception e) {
+	                        	System.out.println(e.getMessage());
+	                        }
+	                    
+	                   
 	                        System.out.println("DVD added");
 	                        break;
 	                    case 3:
@@ -238,7 +265,12 @@ public class Aims {
 	                                new Track(trackTitle, trackLength)
 	                            );
 	                        }
-	                        store.addMedia(cd);
+	                        try {
+	                        	store.addMedia(cd);
+	                        }
+	                        catch(Exception e) {
+	                        	System.out.println(e.getMessage());
+	                        }
 	                        System.out.println("CD added");
 	                        break;
 	                }
