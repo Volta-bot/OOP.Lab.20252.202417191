@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.Collections;
+
+import javax.naming.LimitExceededException;
+
 import java.util.ArrayList;
 public class Cart {
 	public static final int MAX_CAPACITY = 20;
@@ -14,11 +17,15 @@ public class Cart {
 			System.out.println(i.toString());
 		}
 	}
-	public void addMedia(Media media) {
-		if(!mediaExist(media) && nItemsOrdered<MAX_CAPACITY ) {
-			itemsOrdered.add(media);
-			nItemsOrdered++;
+	public void addMedia(Media media) throws LimitExceededException {
+		if (nItemsOrdered >= MAX_CAPACITY) {
+			throw new LimitExceededException("ERROR: The cart is full");
 		}
+		if (mediaExist(media)) {
+			throw new IllegalArgumentException("ERROR: Media already exists in cart");
+		}
+		itemsOrdered.add(media);
+		nItemsOrdered++;
 	}
 	public void removeMedia(Media media) {
 		if(mediaExist(media)) {

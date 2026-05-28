@@ -7,6 +7,7 @@ public class CompactDisc extends Disc implements Playable{
 	private ArrayList<Track> tracks = new ArrayList<>();
 	public CompactDisc(int id, String title, String category, float cost, String director, String artist) {
 		super(id, title, category, cost, 0, director);
+		if(artist == null || artist.isEmpty()) throw new IllegalArgumentException("ERROR: artist cannot be empty");
 		this.artist = artist;
 	}
 	//

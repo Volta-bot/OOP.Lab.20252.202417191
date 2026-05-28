@@ -2,11 +2,13 @@ package hust.soict.globalict.aims.store;
 
 import java.util.ArrayList;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 
 public class Store{
-	public static final int MAX_ITEMS = 100;
+	public static final int MAX_CAPACITY = 100;
 	public int nItemsInStore = 0;
 	private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 	public Media searchMediaByTitle(String title) {
@@ -22,11 +24,20 @@ public class Store{
 		}
 	}
 	
-	public void addMedia(Media media) {
-		if(!mediaExist(media) && nItemsInStore < 100) itemsInStore.add(media);
+	public void addMedia(Media media) throws LimitExceededException {
+		if (nItemsInStore >= MAX_CAPACITY) {
+			throw new LimitExceededException("ERROR: Store is full");
+		}
+		if (!mediaExist(media)) {
+			itemsInStore.add(media);
+			nItemsInStore++;
+		}
 	}
 	public void removeMedia(Media media) {
-		if(mediaExist(media)) itemsInStore.remove(media);
+		if(mediaExist(media)) {
+			itemsInStore.remove(media);
+			nItemsInStore--;
+		}
 	}
 	private boolean mediaExist(Media media) {
 		for(Media i: itemsInStore) {
