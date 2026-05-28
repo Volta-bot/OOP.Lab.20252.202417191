@@ -10,7 +10,6 @@ import hust.soict.globalict.aims.media.Playable;
 public class MediaStore extends JPanel {
     private Media media;
     private Cart cart;
-    private JButton btnAddToCart = new JButton("Add to cart");
     public MediaStore(Media media, Cart cart) {
     	this.cart = cart;
         this.media = media;

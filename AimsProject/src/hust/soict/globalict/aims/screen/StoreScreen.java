@@ -12,14 +12,16 @@ import hust.soict.globalict.aims.store.Store;
 public class StoreScreen extends JFrame {
 	private Store store;
 	private Cart cart;
+	private JPanel center;
 	public StoreScreen(Store store, Cart cart) {
 		this.store = store;
-		this.cart = cart;
+		this.cart = cart; 
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
 		cp.add(createNorth(), BorderLayout.NORTH);
-		cp.add(createCenter(), BorderLayout.CENTER);
+		center = createCenter();
+		cp.add(center, BorderLayout.CENTER);
 		
 		setVisible(true);
 		setTitle("Store");
@@ -38,10 +40,20 @@ public class StoreScreen extends JFrame {
 	    JMenu menu = new JMenu("Options");
 
 	    JMenu smUpdateStore = new JMenu("Update Store");
-	    smUpdateStore.add(new JMenuItem("Add Book"));
-	    smUpdateStore.add(new JMenuItem("Add CD"));
-	    smUpdateStore.add(new JMenuItem("Add DVD"));
+	    
+	    JMenuItem addBook = new JMenuItem("Add Book");
+	    addBook.addActionListener(e -> new AddBookToStoreScreen(store, this));
 
+	    JMenuItem addCD = new JMenuItem("Add CD");
+	    addCD.addActionListener(e -> new AddCompactDiscToStoreScreen(store, this));
+
+	    JMenuItem addDVD = new JMenuItem("Add DVD");
+	    addDVD.addActionListener(e -> new AddDigitalVideoDiscToStoreScreen(store, this));
+	    
+	    smUpdateStore.add(addBook);
+	    smUpdateStore.add(addCD);
+	    smUpdateStore.add(addDVD);
+	    
 	    menu.add(smUpdateStore);
 	    menu.add(new JMenuItem("View store"));
 
@@ -88,6 +100,15 @@ public class StoreScreen extends JFrame {
 	    }
 
 	    return center;
+	}
+	public void refreshStore() {
+	    getContentPane().remove(center);
+
+	    center = createCenter();
+	    getContentPane().add(center, BorderLayout.CENTER);
+
+	    revalidate();
+	    repaint();
 	}
 }
 

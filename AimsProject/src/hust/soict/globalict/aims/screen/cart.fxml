@@ -31,9 +31,12 @@
                             <items>
                                 <Menu text="Update Store">
                                     <items>
-                                        <MenuItem text="Add Book"/>
-                                        <MenuItem text="Add CD"/>
-                                        <MenuItem text="Add DVD"/>
+                                        <MenuItem text="Add Book"
+          									onAction="#menuAddBookPressed"/>
+										<MenuItem text="Add CD"
+									        onAction="#menuAddCDPressed"/>
+										<MenuItem text="Add DVD"
+									        onAction="#menuAddDVDPressed"/>
                                     </items>
                                 </Menu>
 

@@ -153,4 +153,16 @@ public class CartScreenController {
     	frame.setVisible(false);
         new StoreScreen(store,cart);
     }
+    @FXML
+    void menuAddBookPressed(ActionEvent event) {
+        new AddBookToStoreScreen(store, null);
+    }
+    @FXML
+    void menuAddCDPressed(ActionEvent event) {
+        new AddCompactDiscToStoreScreen(store, null);
+    }
+    @FXML
+    void menuAddDVDPressed(ActionEvent event) {
+        new AddDigitalVideoDiscToStoreScreen(store, null);
+    }
 }
