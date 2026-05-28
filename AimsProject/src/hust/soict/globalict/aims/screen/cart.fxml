@@ -31,13 +31,17 @@
                             <items>
                                 <Menu text="Update Store">
                                     <items>
-                                        <MenuItem text="Add Book"/>
-                                        <MenuItem text="Add CD"/>
-                                        <MenuItem text="Add DVD"/>
+                                        <MenuItem text="Add Book"
+          									onAction="#menuAddBookPressed"/>
+										<MenuItem text="Add CD"
+									        onAction="#menuAddCDPressed"/>
+										<MenuItem text="Add DVD"
+									        onAction="#menuAddDVDPressed"/>
                                     </items>
                                 </Menu>
 
-                                <MenuItem text="View Store"/>
+                                <MenuItem text="View Store"
+          							onAction="#menuViewStorePressed"/>
                                 <MenuItem text="View Cart"/>
                             </items>
                         </Menu>
@@ -115,8 +119,8 @@
 
                         <Button fx:id="btnRemove"
                                 text="Remove"
-                                visible="false"/>
-
+        						visible="false"
+        						onAction="#btnRemovePressed"/>
                     </buttons>
                 </ButtonBar>
 
@@ -149,8 +153,9 @@
 
                 </HBox>
 
-                <Button text="Place Order"
-                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 24px;"/>
+                <Button fx:id="btnPlaceOrder"
+        			text="Place Order"
+        			onAction="#btnPlaceOrderPressed"/>
 
             </children>
         </VBox>

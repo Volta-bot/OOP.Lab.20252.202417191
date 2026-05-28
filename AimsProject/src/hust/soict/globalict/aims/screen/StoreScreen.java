@@ -5,18 +5,23 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.store.Store;
 
 public class StoreScreen extends JFrame {
 	private Store store;
-	public StoreScreen(Store store) {
+	private Cart cart;
+	private JPanel center;
+	public StoreScreen(Store store, Cart cart) {
 		this.store = store;
+		this.cart = cart; 
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
 		cp.add(createNorth(), BorderLayout.NORTH);
-		cp.add(createCenter(), BorderLayout.CENTER);
+		center = createCenter();
+		cp.add(center, BorderLayout.CENTER);
 		
 		setVisible(true);
 		setTitle("Store");
@@ -35,13 +40,29 @@ public class StoreScreen extends JFrame {
 	    JMenu menu = new JMenu("Options");
 
 	    JMenu smUpdateStore = new JMenu("Update Store");
-	    smUpdateStore.add(new JMenuItem("Add Book"));
-	    smUpdateStore.add(new JMenuItem("Add CD"));
-	    smUpdateStore.add(new JMenuItem("Add DVD"));
+	    
+	    JMenuItem addBook = new JMenuItem("Add Book");
+	    addBook.addActionListener(e -> new AddBookToStoreScreen(store, this));
 
+	    JMenuItem addCD = new JMenuItem("Add CD");
+	    addCD.addActionListener(e -> new AddCompactDiscToStoreScreen(store, this));
+
+	    JMenuItem addDVD = new JMenuItem("Add DVD");
+	    addDVD.addActionListener(e -> new AddDigitalVideoDiscToStoreScreen(store, this));
+	    
+	    smUpdateStore.add(addBook);
+	    smUpdateStore.add(addCD);
+	    smUpdateStore.add(addDVD);
+	    
 	    menu.add(smUpdateStore);
 	    menu.add(new JMenuItem("View store"));
-	    menu.add(new JMenuItem("View cart"));
+
+	    JMenuItem viewCart = new JMenuItem("View cart");
+	    viewCart.addActionListener(e -> {
+	        setVisible(false);
+	    	new CartScreen(cart, store);
+	    });
+	    menu.add(viewCart);
 
 	    JMenuBar menuBar = new JMenuBar();
 	    menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -58,14 +79,10 @@ public class StoreScreen extends JFrame {
 	    title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
 	    title.setForeground(Color.CYAN);
 
-	    JButton cart = new JButton("View cart");
-	    cart.setPreferredSize(new Dimension(100, 50));
-	    cart.setMaximumSize(new Dimension(100, 50));
-
+	    
 	    header.add(Box.createRigidArea(new Dimension(10, 10)));
 	    header.add(title);
 	    header.add(Box.createHorizontalGlue());
-	    header.add(cart);
 	    header.add(Box.createRigidArea(new Dimension(10, 10)));
 
 	    return header;
@@ -77,12 +94,21 @@ public class StoreScreen extends JFrame {
 	    center.setLayout(new GridLayout(3, 3, 2, 2));
 
 	    ArrayList<Media> mediaInStore = store.getItemsInStore();
-	    for (int i = 0; i < 9; i++) {
-	        MediaStore cell = new MediaStore(mediaInStore.get(i));
+	    for (int i = 0; i < mediaInStore.size(); i++) {
+	        MediaStore cell = new MediaStore(mediaInStore.get(i),cart);
 	        center.add(cell);
 	    }
 
 	    return center;
+	}
+	public void refreshStore() {
+	    getContentPane().remove(center);
+
+	    center = createCenter();
+	    getContentPane().add(center, BorderLayout.CENTER);
+
+	    revalidate();
+	    repaint();
 	}
 }
 

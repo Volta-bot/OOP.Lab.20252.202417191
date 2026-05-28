@@ -1,0 +1,52 @@
+package hust.soict.globalict.aims.screen;
+
+import javax.swing.*;
+
+import hust.soict.globalict.aims.media.CompactDisc;
+import hust.soict.globalict.aims.store.Store;
+
+public class AddCompactDiscToStoreScreen
+        extends AddItemToStoreScreen {
+
+    private JTextField tfDirector;
+    private JTextField tfArtist;
+    private StoreScreen storeScreen;
+    public AddCompactDiscToStoreScreen(Store store, StoreScreen storeScreen) {
+
+        super(store, "Add CD");
+        this.storeScreen = storeScreen;
+        tfDirector = new JTextField();
+        tfArtist = new JTextField();
+
+        centerPanel.add(new JLabel("Director"));
+        centerPanel.add(tfDirector);
+
+        centerPanel.add(new JLabel("Artist"));
+        centerPanel.add(tfArtist);
+
+        JButton btnAdd = new JButton("Add CD");
+
+        btnAdd.addActionListener(e -> {
+
+            CompactDisc cd =
+                    new CompactDisc(
+                            Integer.parseInt(tfId.getText()),
+                            tfTitle.getText(),
+                            tfCategory.getText(),
+                            Float.parseFloat(tfCost.getText()),
+                            tfDirector.getText(),
+                            tfArtist.getText()
+                    );
+
+            store.addMedia(cd);
+            if(storeScreen != null) storeScreen.refreshStore();
+            JOptionPane.showMessageDialog(
+                    this,
+                    "CD added successfully");
+        });
+
+        add(btnAdd, java.awt.BorderLayout.SOUTH);
+
+        revalidate();
+    }
+}
