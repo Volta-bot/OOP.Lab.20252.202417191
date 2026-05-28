@@ -3,6 +3,7 @@ package hust.soict.globalict.aims.screen;
 import javax.naming.LimitExceededException;
 import javax.swing.*;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.store.Store;
 
@@ -43,7 +44,6 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
                 JOptionPane.showMessageDialog(
                         this,
                         "CD added successfully");
-                dispose();
             }
             catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(
@@ -65,7 +65,8 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
                         ex.getMessage(),
                         "Store Error",
                         JOptionPane.ERROR_MESSAGE);
-            } catch (LimitExceededException ex) {
+            } 
+            catch (LimitExceededException ex) {
             	JOptionPane.showMessageDialog(
                         this,
                         ex.getMessage(),

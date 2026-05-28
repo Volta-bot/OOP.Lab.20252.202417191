@@ -32,7 +32,10 @@ public class CartScreenController {
     
     @FXML
     private TableView<Media> tblMedia;
-
+    
+    @FXML
+    private TableColumn<Media, Integer> colMediaId;
+    
     @FXML
     private TableColumn<Media, String> colMediaTitle;
 
@@ -65,15 +68,14 @@ public class CartScreenController {
     
     @FXML
     private void initialize() {
+    	colMediaId.setCellValueFactory(
+    			new PropertyValueFactory<Media, Integer>("id"));
         colMediaTitle.setCellValueFactory(
                 new PropertyValueFactory<Media, String>("title"));
-
         colMediaCategory.setCellValueFactory(
                 new PropertyValueFactory<Media, String>("category"));
-
         colMediaCost.setCellValueFactory(
                 new PropertyValueFactory<Media, Float>("cost"));
-
         filteredMedia = new FilteredList<>(cart.getItemsOrdered(),media -> true);
         tblMedia.setItems(filteredMedia);
         updateTotalCost();

@@ -3,6 +3,7 @@ package hust.soict.globalict.aims;
 import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -126,7 +127,12 @@ public class Aims {
 					break;
 				case 2:
 					if (media instanceof Playable) {
-						((Playable) media).play();
+						try {
+							((Playable) media).play();
+						}
+						catch (PlayerException e) {
+							System.out.println(e.getMessage());
+						}
 					}
 					break;
 				}
@@ -152,7 +158,12 @@ public class Aims {
 				title = input.nextLine();
 				media = store.searchMediaByTitle(title);
 				if (media instanceof Playable) {
-					((Playable) media).play();
+					try {
+						((Playable) media).play();
+					}
+					catch (PlayerException e) {
+						System.out.println(e.getMessage());
+					}
 				} else {
 					System.out.println("Media cannot be played");
 				}
@@ -334,7 +345,12 @@ public class Aims {
 				title = input.nextLine();
 				media = cart.searchMediaByTitle(title);
 				if (media instanceof Playable) {
-					((Playable) media).play();
+					try {
+						((Playable) media).play();
+					}
+					catch (PlayerException e) {
+						System.out.println(e.getMessage());
+					}
 				} else {
 					System.out.println("Media cannot be played");
 				}

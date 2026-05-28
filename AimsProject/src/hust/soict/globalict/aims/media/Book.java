@@ -4,24 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Media {
-	private List<String> Author = new ArrayList<>();
+	private List<String> author = new ArrayList<>();
 	public Book(int id, String title, String category, float cost) {
 		super(id, title, category, cost);
 	}
 	// add/remove Author
 	public void addAuthor(String name) {
-		if(!Author.contains(name)) Author.add(name);
+		if(!author.contains(name)) author.add(name);
 	}
 	public void removeAuthor(String name){
-		if(Author.contains(name)) Author.remove(name);
+		if(author.contains(name)) author.remove(name);
 	}
 	@Override
 	public String toString() {
 	    return "Book - "
 	            + getTitle() + " - "
 	            + getCategory() + " - "
-	            + Author + " - "
+	            + author + " - "
 	            + getCost() + "$";
+	}
+	public List<String> getAuthors() {
+		return author;
 	}
 
 }

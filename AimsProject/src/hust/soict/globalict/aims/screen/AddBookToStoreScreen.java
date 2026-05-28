@@ -36,7 +36,6 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
                 JOptionPane.showMessageDialog(
                         this,
                         "Book added successfully");
-                dispose();
 
             }
             catch (NumberFormatException ex) {

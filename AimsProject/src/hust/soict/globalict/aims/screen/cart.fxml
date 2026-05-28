@@ -98,6 +98,9 @@
                 <TableView fx:id="tblMedia">
 
                     <columns>
+                   	 	<TableColumn fx:id="colMediaId" 
+                   	 				 text="ID"/>
+                   	 				 
                         <TableColumn fx:id="colMediaTitle"
                                      text="Title"/>
 

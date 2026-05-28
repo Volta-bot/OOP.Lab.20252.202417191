@@ -44,7 +44,6 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
                 JOptionPane.showMessageDialog(
                         this,
                         "DVD added successfully");
-                dispose();
             }
             catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(
