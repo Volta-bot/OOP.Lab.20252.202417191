@@ -1,0 +1,17 @@
+Assignment 6.1 answers:
+1) What happens if the user press cancel?
+- The program displays the message "You've chosen NO"
+2) How to customize options button?
+- we create an array of object containing the option message we want to use,
+- for example: object[] options = {"Yes i do", "No i dont"}
+- we then use JOptionPane.showOptionDialog and pass in the following parameters:
+	int choice = JOptionPane.showOptionDialog(
+            null,                               	// parentComponent
+            "Do you want to change class ticket",	// message
+            "Options",                 			// title
+            JOptionPane.DEFAULT_OPTION,         	// optionType
+            JOptionPane.QUESTION_MESSAGE,       	// messageType
+            null,                               	// icon (null uses default for messageType)
+            options,                            	// options (the custom buttons)
+            options[0]                          	// initialValue (default focused button)
+        );
